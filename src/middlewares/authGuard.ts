@@ -6,7 +6,7 @@ import AppError from "../errors/AppError";
 import { HTTPStatusCode } from "../utils/httpCode";
 import { UserModel } from "../modules/users/user.model";
 
-type TRoles = 'admin';
+type TRoles = 'buyer' | 'seller';
 /**
  * auth guard middlewares
  * @param roles user access role
@@ -14,8 +14,8 @@ type TRoles = 'admin';
  */
 export const authGuard = (...roles: TRoles[]) => {
     return handleAsyncReq(async (req: Request, res: Response, next: NextFunction) => {
-        const token = req.cookies.accessToken;
-        // const token = req.headers.authorization as string;
+        // const token = req.cookies.accessToken;
+        const token = req.headers.authorization as string;
         const decoded = jwt.verify(token, config.jwt_access_secret as string) as JwtPayload;
         const user = await UserModel.findOne({ id: decoded.userId });
 

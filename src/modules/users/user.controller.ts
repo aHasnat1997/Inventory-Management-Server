@@ -33,6 +33,17 @@ const Login = handelAsyncReq(async (req: Request, res: Response) => {
 });
 
 /**
+ * Logout user and clear cookie
+ */
+const LogOut = handelAsyncReq(async (req: Request, res: Response) => {
+  res.clearCookie('refreshToken', { httpOnly: true });
+  successResponse(res, {
+    message: 'User logout successful',
+    doc: {}
+  })
+});
+
+/**
  * user new access token
  */
 const NewAccessToken = handelAsyncReq(async (req: Request, res: Response): Promise<void> => {
@@ -48,5 +59,6 @@ const NewAccessToken = handelAsyncReq(async (req: Request, res: Response): Promi
 export const UserController = {
   Registration,
   Login,
+  LogOut,
   NewAccessToken
 }

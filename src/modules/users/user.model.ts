@@ -13,7 +13,8 @@ const UserSchema = new Schema<TUser, TUserStaticMethod>({
   email: { type: String, required: true, unique: true },
   phone: { type: String, required: true },
   password: { type: String, required: true },
-  userImg: { type: String },
+  userImg: { type: String, default: null },
+  role: { type: String, default: 'buyer' },
   isActive: { type: Boolean, default: true },
 });
 

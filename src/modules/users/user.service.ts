@@ -32,7 +32,8 @@ const UserLogin = async (payload: TUserLogin) => {
 
   const jwtPayload = {
     id: user?._id,
-    email: user?.email
+    email: user?.email,
+    role: user?.role
   }
   const accessToken = jwt.sign(jwtPayload, config.jwt_access_secret as string, { expiresIn: config.jwt_access_expires_in });
   const refreshToken = jwt.sign(jwtPayload, config.jwt_refresh_secret as string, { expiresIn: config.jwt_refresh_expires_in });
@@ -60,7 +61,8 @@ const RefreshAccessToken = async (payload: string) => {
 
   const jwtPayload = {
     id: user?._id,
-    email: user?.email
+    email: user?.email,
+    role: user?.role
   }
   const accessToken = jwt.sign(jwtPayload, config.jwt_access_secret as string, { expiresIn: config.jwt_access_expires_in });
   return {

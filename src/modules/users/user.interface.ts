@@ -11,7 +11,8 @@ export type TUser = {
   phone: string,
   password: string,
   userImg?: string,
-  isActive?: boolean
+  isActive?: boolean,
+  role: 'buyer' | 'seller'
 };
 
 export type TUserLogin = {
