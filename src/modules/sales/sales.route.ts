@@ -19,4 +19,10 @@ SaleRoute.get(
   SaleController.GetAllSale
 );
 
+SaleRoute.get(
+  '/my-sale',
+  authGuard(TUserRole.buyer),
+  SaleController.GetUserSale
+);
+
 export default SaleRoute;

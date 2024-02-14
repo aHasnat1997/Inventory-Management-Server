@@ -1,5 +1,6 @@
 import config from "../../config";
 import AppError from "../../errors/AppError";
+import { TJwtPayload } from "../../types/jwt.type";
 import { HTTPStatusCode } from "../../utils/httpCode";
 import { TUser, TUserLogin } from "./user.interface";
 import { UserModel } from "./user.model";
@@ -30,8 +31,7 @@ const UserLogin = async (payload: TUserLogin) => {
     throw new AppError(HTTPStatusCode.Forbidden, 'Wrong Password');
   }
 
-  const jwtPayload = {
-    id: user?._id,
+  const jwtPayload: TJwtPayload = {
     email: user?.email,
     role: user?.role
   }
@@ -59,8 +59,7 @@ const RefreshAccessToken = async (payload: string) => {
     throw new AppError(HTTPStatusCode.Forbidden, 'User is not active!');
   }
 
-  const jwtPayload = {
-    id: user?._id,
+  const jwtPayload: TJwtPayload = {
     email: user?.email,
     role: user?.role
   }

@@ -79,7 +79,20 @@ const GetAllSale = async (query: Record<string, unknown>) => {
   return { meta, result };
 };
 
+/**
+ * Get user all orders
+ * @param userId user id
+ * @returns Get user orders
+ */
+const GetUserOrder = async (userId: string) => {
+  const saleQuery = new QueryBuilder(SaleModel.find({ userId })).sort().paginate();
+  const result = await saleQuery.modelQuery.populate('productId');
+  const meta = await saleQuery.countTotal();
+  return { meta, result };
+}
+
 export const SaleService = {
   CreateSale,
-  GetAllSale
+  GetAllSale,
+  GetUserOrder
 };

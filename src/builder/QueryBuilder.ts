@@ -1,7 +1,7 @@
 import { FilterQuery, Query } from 'mongoose';
 
 class QueryBuilder<T> {
-  constructor(public modelQuery: Query<T[], T>, public query: Record<string, unknown>) {
+  constructor(public modelQuery: Query<T[], T>, public query?: Record<string, unknown>) {
     this.modelQuery = modelQuery;
     this.query = query;
   }

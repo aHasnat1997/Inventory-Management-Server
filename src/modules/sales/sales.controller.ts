@@ -21,7 +21,17 @@ const GetAllSale = handleAsyncReq(async (req: Request, res: Response) => {
   }, HTTPStatusCode.Ok);
 });
 
+const GetUserSale = handleAsyncReq(async (req: Request, res: Response) => {
+  const result = await SaleService.GetUserOrder(req?.user?._id);
+  successResponse(res, {
+    message: 'User purchases retrieves successfully...',
+    meta: result.meta,
+    doc: result.result
+  }, HTTPStatusCode.Ok);
+});
+
 export const SaleController = {
   CreateSale,
-  GetAllSale
+  GetAllSale,
+  GetUserSale
 };
