@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { TProduct } from "./products.interface";
+import { TAvailability, TProduct } from "./products.interface";
 import AppError from "../../errors/AppError";
 import { HTTPStatusCode } from "../../utils/httpCode";
 import { ProductModel } from "./products.model";
@@ -100,7 +100,7 @@ const UpdateProduct = async (id: string, payload: TProduct) => {
 */
 const DeleteProducts = async (payload: string[]) => {
   const needToDeleteProduct = async (id: string) => {
-    await ProductModel.findByIdAndUpdate(id, { availability: 'stock-out', quantity: 0 }, { new: true })
+    await ProductModel.findByIdAndUpdate(id, { availability: TAvailability.stockOut, quantity: 0 }, { new: true })
   }
   const result = payload.forEach(item => needToDeleteProduct(item))
   return result;

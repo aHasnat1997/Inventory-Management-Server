@@ -6,6 +6,7 @@ import { HTTPStatusCode } from "../../utils/httpCode";
 import AppError from "../../errors/AppError";
 import QueryBuilder from "../../builder/QueryBuilder";
 import { UserModel } from "../users/user.model";
+import { TAvailability } from "../products/products.interface";
 
 /**
  * Create sale in DB
@@ -48,7 +49,7 @@ const CreateSale = async (payload: TSales) => {
       throw new AppError(HTTPStatusCode.BadRequest, 'Failed to sale product...');
     }
     if (newQuantity === 0) {
-      await ProductModel.findByIdAndUpdate(payload.productId, { availability: 'stock-out' }, { session });
+      await ProductModel.findByIdAndUpdate(payload.productId, { availability: TAvailability.stockOut }, { session });
     }
 
     await session.commitTransaction();

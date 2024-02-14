@@ -1,3 +1,9 @@
+export enum TAvailability {
+  inStock = 'in-stock',
+  upComing = 'up-coming',
+  stockOut = 'stock-out'
+}
+
 export type TProduct = {
   productName: string,
   productImg?: string,
@@ -8,6 +14,6 @@ export type TProduct = {
   brand: string,
   compatibility: [string],
   condition: 'new' | 'used',
-  availability: 'in-stock' | 'up-coming' | 'stock-out',
+  availability: TAvailability.inStock | TAvailability.upComing | TAvailability.stockOut,
   specification?: object
 }

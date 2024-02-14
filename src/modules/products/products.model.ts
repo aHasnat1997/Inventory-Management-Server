@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { TProduct } from "./products.interface";
+import { TAvailability, TProduct } from "./products.interface";
 
 const ProductSchema = new Schema<TProduct>({
   productName: { type: String, required: true },
@@ -11,7 +11,7 @@ const ProductSchema = new Schema<TProduct>({
   brand: { type: String, required: true },
   compatibility: { type: [String], required: true },
   condition: { type: String, required: true },
-  availability: { type: String, required: true },
+  availability: { type: String, enum: [TAvailability.inStock, TAvailability.upComing, TAvailability.stockOut], required: true, default: TAvailability.inStock },
   specification: { type: Object }
 }, {
   timestamps: true
