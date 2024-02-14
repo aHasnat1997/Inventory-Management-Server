@@ -3,6 +3,7 @@ import UserRoute from "../modules/users/user.route";
 import CategoryRoute from "../modules/categories/categories.route";
 import ProductRoute from "../modules/products/products.route";
 import SaleRoute from "../modules/sales/sales.route";
+import ServicingRoute from "../modules/servicing/servicing.route";
 
 // create route using express router
 export const AllRoutes = Router();
@@ -29,6 +30,10 @@ const modulesRoutes: TModulesRoutes[] = [
     {
         path: '/sale',
         route: SaleRoute
+    },
+    {
+        path: '/servicing',
+        route: ServicingRoute
     }
 ]
 

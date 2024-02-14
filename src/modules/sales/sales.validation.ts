@@ -5,6 +5,10 @@ const SaleSchema = z.object({
     required_error: "productId is required",
     invalid_type_error: "productId must be a string",
   }),
+  userId: z.string({
+    required_error: "userId is required",
+    invalid_type_error: "userId must be a string",
+  }),
   productName: z.string({
     required_error: "productName is required",
     invalid_type_error: "productName must be a string",
