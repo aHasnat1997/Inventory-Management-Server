@@ -12,5 +12,6 @@ export default {
     jwt_refresh_secret: process.env.JWT_REFRESH_SECRET,
     jwt_forgot_secret: process.env.JWT_FORGOT_SECRET,
     jwt_refresh_expires_in: process.env.JWT_REFRESH_EXPIRES_IN,
-    cors_access: process.env.CORS_ACCESS
+    cors_access: process.env.CORS_ACCESS,
+    super_pass: process.env.SUPER_PASS
 };

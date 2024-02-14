@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { TName, TUser, TUserStaticMethod } from "./user.interface";
+import { TName, TUser, TUserRole, TUserStaticMethod } from "./user.interface";
 import bcrypt from 'bcrypt'
 import config from "../../config";
 
@@ -14,7 +14,7 @@ const UserSchema = new Schema<TUser, TUserStaticMethod>({
   phone: { type: String, required: true },
   password: { type: String, required: true },
   userImg: { type: String, default: null },
-  role: { type: String, default: 'buyer' },
+  role: { type: String, enum: [TUserRole.buyer, TUserRole.seller, TUserRole.superAdmin], default: TUserRole.buyer },
   isActive: { type: Boolean, default: true },
 });
 

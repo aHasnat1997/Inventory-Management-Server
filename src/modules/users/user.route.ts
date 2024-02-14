@@ -5,9 +5,23 @@ import { UserValidation } from "./user.validation";
 
 const UserRoute = Router();
 
-UserRoute.post('/register', validateRequest(UserValidation.UserRegistrationValidationSchema), UserController.Registration);
-UserRoute.post('/login', validateRequest(UserValidation.UserLoginValidationSchema), UserController.Login);
-UserRoute.get('/logout', UserController.LogOut);
-UserRoute.get('/refresh-token', UserController.NewAccessToken);
+UserRoute.post(
+  '/register',
+  validateRequest(UserValidation.UserRegistrationValidationSchema),
+  UserController.Registration
+);
+UserRoute.post(
+  '/login',
+  validateRequest(UserValidation.UserLoginValidationSchema),
+  UserController.Login
+);
+UserRoute.get(
+  '/logout',
+  UserController.LogOut
+);
+UserRoute.get(
+  '/refresh-token',
+  UserController.NewAccessToken
+);
 
 export default UserRoute;

@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { TSuccessResponse } from "../interfaces/successResponse";
+import { TSuccessResponse } from "../types/successResponse.type";
 
 /**
  * Handle all success response

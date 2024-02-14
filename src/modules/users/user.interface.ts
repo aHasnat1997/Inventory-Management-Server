@@ -5,6 +5,12 @@ export type TName = {
   lastName: string
 };
 
+export enum TUserRole {
+  superAdmin = 'superAdmin',
+  buyer = 'buyer',
+  seller = 'seller'
+}
+
 export type TUser = {
   username: TName,
   email: string,
@@ -12,7 +18,7 @@ export type TUser = {
   password: string,
   userImg?: string,
   isActive?: boolean,
-  role: 'buyer' | 'seller'
+  role: TUserRole.superAdmin | TUserRole.seller | TUserRole.buyer
 };
 
 export type TUserLogin = {

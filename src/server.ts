@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import app from "./app"
 import config from "./config";
+import seedSuperAdmin from "./utils/seedSuperAdmin";
 
 (async function server() {
     try {
@@ -9,7 +10,10 @@ import config from "./config";
             .connect(config.databaseURL as string, {
                 autoIndex: true,
             })
-            .then(() => console.log('Connected to DB 🔌'))
+            .then(() => {
+                seedSuperAdmin()
+                console.log('Connected to DB 🔌')
+            })
             .catch((error) => console.log(error));
 
         // server listening

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mongoose from "mongoose";
-import { TErrorResponse } from "../interfaces/error.interface";
+import { TErrorResponse } from "../types/error.type";
 import { ZodError } from "zod";
 
 /**

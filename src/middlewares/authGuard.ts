@@ -5,13 +5,14 @@ import config from "../config";
 import AppError from "../errors/AppError";
 import { HTTPStatusCode } from "../utils/httpCode";
 import { UserModel } from "../modules/users/user.model";
+import { TUserRole } from "../modules/users/user.interface";
 
 /**
  * auth guard middlewares
  * @param roles user access role
  * @returns async function
 */
-type TRoles = 'buyer' | 'seller' | 'super-user';
+type TRoles = TUserRole.buyer | TUserRole.seller | TUserRole.superAdmin;
 export const authGuard = (...roles: TRoles[]) => {
     return handleAsyncReq(async (req: Request, res: Response, next: NextFunction) => {
         // const token = req.cookies.accessToken;
@@ -25,6 +26,8 @@ export const authGuard = (...roles: TRoles[]) => {
             throw new AppError(HTTPStatusCode.Unauthorized, 'Role Unauthorized...');
         } else if (!user) {
             throw new AppError(HTTPStatusCode.NotFound, 'This user is not found!');
+        } else if (!user.isActive) {
+            throw new AppError(HTTPStatusCode.NotFound, 'This user is not active!');
         }
 
         req.user = user;

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
-import { TErrorResponse } from "../interfaces/error.interface";
+import { TErrorResponse } from "../types/error.type";
 import { HTTPStatusCode } from "../utils/httpCode";
 import { DuplicateKeyError, MongooseCastError, MongooseValidationError, ZodValidationError } from "../errors/HandleErrorResponse";
 import { ZodError } from "zod";
