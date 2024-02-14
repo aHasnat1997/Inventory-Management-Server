@@ -2,7 +2,8 @@ import { Schema, Types, model } from "mongoose";
 import { TSales } from "./sales.interface";
 
 const SaleSchema = new Schema<TSales>({
-  productId: { type: Types.ObjectId, required: true, ref: 'products' },
+  userId: { type: Types.ObjectId, required: true, ref: 'user' },
+  productId: { type: Types.ObjectId, required: true, ref: 'product' },
   productName: { type: String, required: true },
   price: { type: Number, required: true },
   quantity: { type: Number, required: true, default: 1 },

@@ -6,12 +6,12 @@ import AppError from "../errors/AppError";
 import { HTTPStatusCode } from "../utils/httpCode";
 import { UserModel } from "../modules/users/user.model";
 
-type TRoles = 'buyer' | 'seller';
 /**
  * auth guard middlewares
  * @param roles user access role
  * @returns async function
- */
+*/
+type TRoles = 'buyer' | 'seller' | 'super-user';
 export const authGuard = (...roles: TRoles[]) => {
     return handleAsyncReq(async (req: Request, res: Response, next: NextFunction) => {
         // const token = req.cookies.accessToken;

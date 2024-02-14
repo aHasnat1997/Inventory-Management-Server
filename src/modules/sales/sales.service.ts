@@ -5,6 +5,7 @@ import { ProductModel } from "../products/products.model";
 import { HTTPStatusCode } from "../../utils/httpCode";
 import AppError from "../../errors/AppError";
 import QueryBuilder from "../../builder/QueryBuilder";
+import { UserModel } from "../users/user.model";
 
 /**
  * Create sale in DB
@@ -16,6 +17,14 @@ const CreateSale = async (payload: TSales) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
+    const user = await UserModel.findById(payload.userId).session(session);
+    if (!user) {
+      throw new AppError(HTTPStatusCode.BadRequest, 'User not found...');
+    }
+    if (user.isActive === false) {
+      throw new AppError(HTTPStatusCode.BadRequest, 'User not active...')
+    }
+
     const saleProduct = await ProductModel.findById(payload.productId).session(session);
     if (!saleProduct) {
       throw new AppError(HTTPStatusCode.BadRequest, 'Product not found...');
@@ -65,7 +74,7 @@ const GetAllSale = async (query: Record<string, unknown>) => {
     .sort()
     .paginate()
     .fields();
-  const result = await saleQuery.modelQuery;
+  const result = await saleQuery.modelQuery.populate('productId');
   const meta = await saleQuery.countTotal();
   return { meta, result };
 };
