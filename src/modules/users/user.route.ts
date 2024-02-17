@@ -15,7 +15,7 @@ UserRoute.post(
   validateRequest(UserValidation.UserLoginValidationSchema),
   UserController.Login
 );
-UserRoute.get(
+UserRoute.post(
   '/logout',
   UserController.LogOut
 );
