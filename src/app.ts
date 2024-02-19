@@ -13,6 +13,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: config.cors_access, credentials: true }));
+// app.use(cors({ origin: 'https://store-management-chi.vercel.app', credentials: true }));
 
 // all valid routes
 app.use('/api/v1', AllRoutes);
