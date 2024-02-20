@@ -255,15 +255,6 @@ const SalesHistoryForSeller = async (reportType: 'weekly' | 'daily' | 'monthly' 
       throw new Error('Invalid report type. Supported types: weekly, daily, monthly, yearly');
   }
 
-  // aggregationPipeline.push({
-  //   $group: {
-  //     _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
-  //     totalPrice: { $sum: { $multiply: ["$price", "$quantity"] } },
-  //     totalQuantity: { $sum: "$quantity" },
-  //     count: { $sum: 1 }
-  //   }
-  // })
-
   const result = await SaleModel.aggregate(aggregationPipeline);
   return result
 }
